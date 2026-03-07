@@ -39,11 +39,11 @@
       }
     </style>
   </head>
-  <body>
+  <body class="min-h-screen bg-base-300 ">
     <header>
-      <div class="navbar bg-base-100 shadow-sm">
+      <div class="navbar bg-base-100 shadow-sm mb-8">
         <div class="flex-1">
-          <h2 class="text-2xl font-semibold">
+          <h2 class="text-[#1F2937] text-2xl font-semibold">
             <i class="fa-brands fa-github"></i> GitHub Issues Tracker
           </h2>
         </div>
@@ -61,5 +61,18 @@
         </div>
       </div>
     </header>
+
+   <main class="mx-auto w-11/12">
+    <section>
+         <div class="bg-base-100 p-4 rounded-sm">
+            <button class="btn btn-soft btn-xs btn-primary px-8 py-2">All</button>
+            <button class="btn btn-soft btn-xs btn-primary px-6 py-2">Open</button>
+            <button class="btn btn-soft btn-xs btn-primary px-5 py-2"> Closed</button>
+         </div>
+    </section>
+
+  
+   </main>
+
   </body>
 </html>
