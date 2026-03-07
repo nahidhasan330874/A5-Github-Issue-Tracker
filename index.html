@@ -57,18 +57,19 @@
           <div class="card-body space-y-3">
             <fieldset class="fieldset">
               <div class="space-y-1">
-                <label class="label font-medium text-[#1F2937]">Username</label>
+                <label  class="label font-medium text-[#1F2937]">Username</label>
                 <input
+                  id="input-name"
                   type="text"
                   class="input rounded-lg"
                   placeholder=" Enter Username"
                 />
-                <p class="text-[#4A00FF]">Default: admin</p>
+                <p class="text-[#4A00FF] mb-1">Default: admin</p>
               </div>
-
               <div class="space-y-1">
                 <label class="label font-medium text-[#1F2937]">Password</label>
                 <input
+                id="input-pin" 
                 minlength="8"
                 maxlength="8"
                   type="password"
@@ -77,14 +78,14 @@
                 />
                 <p class="text-[#4A00FF]">Default: admin123</p>
               </div>
-              <button class="btn btn-primary my-4">Sign In</button>
+              <button id="signin-btn" class="btn btn-primary my-4">Sign In</button>
               <div class="flex items-center  ">
                   <div class="flex-grow border-t border-gray-300"></div>
                   <span class=" text-gray-500">OR</span>
                   <div class="flex-grow border-t border-gray-300"></div>
                 </div>
 
-                <div class=" text-center space-y-2">
+                <div class=" text-center space-y-3">
                     <p class="text-[#64748B]">Demo Credentials:</p>
                    <div>
                       <h2 class="font-medium">Username: <span class="text-gray-500">admin</span> </h2>      
