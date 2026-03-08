@@ -20,16 +20,36 @@ function hideLoading() {
   cardLoading.classList.add("hidden");
 }
 
+// search
+document.getElementById('btn-search').addEventListener(('click'), () =>{
+     showLoading()
+    const input = document.getElementById('input-search');
+    const searchValue = input.value.trim().toLowerCase();
+    // console.log(searchValue)
+     
+    fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+    .then((res) => res.json())
+    .then((data) => {
+        const allData = data.data
+        // console.log(allData)
+        const filterData = allData.filter((word) => 
+        word.title.toLowerCase().includes(searchValue)
+    );
+     displayCards(filterData);
+     hideLoading();
+    });
+})
+
+
+
 const modalLoading = async (id) => {
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
-  console.log(url);
   const res = await fetch(url);
   const details = await res.json();
   displayDetails(details.data);
 };
 
-const displayDetails = (word) => {
-  console.log(word);
+const displayDetails = (word) => { 
   const detailsBox = document.getElementById("container");
   detailsBox.innerHTML = `  <div  class="modal-box">
             <h3 class="text-lg font-bold mb-1"> ${word.title}</h3>
@@ -39,8 +59,8 @@ const displayDetails = (word) => {
               >
                  ${word.status}
               </li>
-              <li class="text-[12px] text-[#64748B]">Opened by ${word.author}</li>
-              <li class="text-[12px] text-[#64748B]"> ${word.updatedAt}</li>
+              <li class="text-[12px] text-[#64748B]"><i class="fa-solid fa-circle"></i> Opened by ${word.author}</li>
+              <li class="text-[12px] text-[#64748B]"><i class="fa-solid fa-circle"></i> ${word.updatedAt}</li>
             </ul>
             <div class="flex items-center gap-4 mb-6">
               <h2
@@ -68,7 +88,7 @@ const displayDetails = (word) => {
 
                  <div>
                     <p  class="text-[#64748B] text-xs">Priority:</p>
-                   <p class="btn btn-xs btn-error  cursor-default btn-active rounded-xl text-white text-xs font-medium ">${word.priority}</p>
+                   <p class="btn btn-xs btn-error uppercase  cursor-default btn-active rounded-xl text-white text-[10px] font-medium ">${word.priority}</p>
                  </div>
             </div>
             <div class="modal-action">
@@ -202,3 +222,4 @@ btnClosed.addEventListener("click", async () => {
 });
 
 loadCards();
+
