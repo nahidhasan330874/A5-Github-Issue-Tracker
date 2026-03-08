@@ -20,6 +20,67 @@ function hideLoading() {
   cardLoading.classList.add("hidden");
 }
 
+const modalLoading = async (id) => {
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+  console.log(url);
+  const res = await fetch(url);
+  const details = await res.json();
+  displayDetails(details.data);
+};
+
+const displayDetails = (word) => {
+  console.log(word);
+  const detailsBox = document.getElementById("container");
+  detailsBox.innerHTML = `  <div  class="modal-box">
+            <h3 class="text-lg font-bold mb-1"> ${word.title}</h3>
+            <ul class="flex gap-3 mb-5">
+              <li
+                class="bg-[#00A96E] text-[12px] text-white px-2 rounded-xl uppercase items-center"
+              >
+                 ${word.status}
+              </li>
+              <li class="text-[12px] text-[#64748B]">Opened by ${word.author}</li>
+              <li class="text-[12px] text-[#64748B]"> ${word.updatedAt}</li>
+            </ul>
+            <div class="flex items-center gap-4 mb-6">
+              <h2
+                class="flex items-center text-[12px] font-medium gap-1 text-[#EF4444] bg-[#FEECEC] px-2 rounded-xl"
+              >
+                <span class="w-2"><img src="./images/bug.png" alt="" /></span>
+                Bug
+              </h2>
+              <h2
+                class="flex items-center text-[12px] font-medium gap-1 text-[#D97706] bg-[#fff6d0] px-2 rounded-xl"
+              >
+                <span class="w-3 uppercase"
+                  ><img src="./images/bug-2.png" alt=""
+                /></span>
+                Help wanted
+              </h2>
+            </div>
+            <p class="text-[#64748B] text-xs mb-4 line-clamp-2">${word.description}</p>
+
+            <div class="bg-base-200 p-4 grid grid-cols-2">
+                 <div>
+                    <p  class="text-[#64748B] text-xs">Assignee:</p>
+                    <h2 class="font-semibold text-xs">${word.author}</h2>
+                 </div>
+
+                 <div>
+                    <p  class="text-[#64748B] text-xs">Priority:</p>
+                   <p class="btn btn-xs btn-error  cursor-default btn-active rounded-xl text-white text-xs font-medium ">${word.priority}</p>
+                 </div>
+            </div>
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn btn-primary">Close</button>
+              </form>
+            </div>
+          </div> `;
+  document.getElementById("modal").showModal();
+};
+
 async function loadCards() {
   showLoading();
   const res = await fetch(
@@ -37,12 +98,17 @@ function displayCards(cards) {
 
   cards.forEach((card) => {
     const allCard = document.createElement("div");
-    const borderColor = card.status === "open" ? "border-t-4 border-[#00A96E]" : "border-t-4 border-[#A855F7]";
-    const statusImg = card.status  === "open" ? "./images/Open-Status.png" : "./images/Closed- Status .png";
-
+    const borderColor =
+      card.status === "open"
+        ? "border-t-4 border-[#00A96E]"
+        : "border-t-4 border-[#A855F7]";
+    const statusImg =
+      card.status === "open"
+        ? "./images/Open-Status.png"
+        : "./images/Closed- Status .png";
 
     allCard.innerHTML = `
-      <div onclick="my_modal_5.showModal()" class="bg-base-100 shadow-sm rounded-md h-full w-full object-cover ${borderColor}">
+      <div onclick="modalLoading(${card.id})" class="bg-base-100 shadow-sm rounded-md h-full w-full object-cover ${borderColor}">
         <div class="p-4 space-y-3">
           <div class="flex justify-between items-center">
             <img src="${statusImg}" alt="" />
@@ -95,7 +161,6 @@ btnOpen.addEventListener("click", () => {
   displayCards(filtered);
   updateSummary(filtered);
   setActiveBtn(btnOpen);
-   
 });
 
 btnClosed.addEventListener("click", () => {
@@ -103,7 +168,6 @@ btnClosed.addEventListener("click", () => {
   displayCards(filtered);
   updateSummary(filtered);
   setActiveBtn(btnClosed);
- 
 });
 
 function setActiveBtn(activeBtn) {
@@ -114,29 +178,27 @@ function setActiveBtn(activeBtn) {
   if (activeBtn !== btnAll) {
     activeBtn.classList.add("btn");
   }
- 
 }
 
 btnOpen.addEventListener("click", async () => {
   showLoading();
-  const filtered = allCards.filter((click) => click.status  === "open");
+  const filtered = allCards.filter((click) => click.status === "open");
   await new Promise((res) => setTimeout(res, 300));
   displayCards(filtered);
   updateSummary(filtered);
   hideLoading();
   setActiveBtn(btnOpen);
 });
-btnClosed.addEventListener('click', async () => {
-  showLoading(); 
+btnClosed.addEventListener("click", async () => {
+  showLoading();
 
-  const filtered = allCards.filter(click => click.status === "closed");
-  await new Promise(res => setTimeout(res, 300));
+  const filtered = allCards.filter((click) => click.status === "closed");
+  await new Promise((res) => setTimeout(res, 300));
 
-  displayCards(filtered);       
-  updateSummary(filtered);      
-  hideLoading();                
-  setActiveBtn(btnClosed);      
+  displayCards(filtered);
+  updateSummary(filtered);
+  hideLoading();
+  setActiveBtn(btnClosed);
 });
-
 
 loadCards();
