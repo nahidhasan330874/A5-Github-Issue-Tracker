@@ -65,9 +65,11 @@
     <main class="mx-auto w-11/12">
       <section>
         <div id="btn-container" class="bg-base-100 p-4 rounded-sm">
-          <button id="btn1"   class="btn btn-xs btn-primary px-8 py-2">All</button>
-          <button id="btn2"   class="btn btn-xs  px-6 py-2">Open</button>
-          <button id="btn3"   class="btn btn-xs  px-5 py-2">Closed</button>
+          <button id="btn1" class="btn btn-xs btn-primary px-8 py-2">
+            All
+          </button>
+          <button id="btn2" class="btn btn-xs px-6 py-2">Open</button>
+          <button id="btn3" class="btn btn-xs px-5 py-2">Closed</button>
         </div>
       </section>
 
@@ -97,15 +99,32 @@
         </div>
       </section>
 
-      <div id="card-container" class=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-6 bg-base-200">
+      <div
+        id="card-container"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-6 bg-base-200"
+      ></div>
 
-       
+      <div
+        id="loading"
+        class="h-[60vh] flex justify-center items-center hidden"
+      >
+        <span class="loading loading-dots loading-xl"></span>
       </div>
 
-      <div id="loading" class="h-[60vh]  flex justify-center items-center hidden">
-        <span class="loading loading-dots loading-xl"></span>
-      </div>    
+      <div>
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <h3 id="modalTitle" class="text-lg font-bold"></h3>
+            <p id="modalDesc" class="py-4"></p>
 
+            <div class="modal-action">
+              <form method="dialog">
+                <button class="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </div>
     </main>
 
     <script src="./script/script.js"></script>

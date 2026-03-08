@@ -106,7 +106,37 @@ btnClosed.addEventListener("click", () => {
  
 });
 
+function setActiveBtn(activeBtn) {
+  [btnAll, btnOpen, btnClosed].forEach((btn) =>
+    btn.classList.remove("btn-primary"),
+  );
+  activeBtn.classList.add("btn-primary");
+  if (activeBtn !== btnAll) {
+    activeBtn.classList.add("btn");
+  }
+ 
+}
 
+btnOpen.addEventListener("click", async () => {
+  showLoading();
+  const filtered = allCards.filter((click) => click.status  === "open");
+  await new Promise((res) => setTimeout(res, 300));
+  displayCards(filtered);
+  updateSummary(filtered);
+  hideLoading();
+  setActiveBtn(btnOpen);
+});
+btnClosed.addEventListener('click', async () => {
+  showLoading(); 
+
+  const filtered = allCards.filter(click => click.status === "closed");
+  await new Promise(res => setTimeout(res, 300));
+
+  displayCards(filtered);       
+  updateSummary(filtered);      
+  hideLoading();                
+  setActiveBtn(btnClosed);      
+});
 
 
 loadCards();
