@@ -112,14 +112,53 @@
       </div>
 
       <div>
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
         <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
           <div class="modal-box">
-            <h3 id="modalTitle" class="text-lg font-bold"></h3>
-            <p id="modalDesc" class="py-4"></p>
+            <h3 class="text-lg font-bold mb-1">Fix broken image uploads</h3>
+            <ul class="flex gap-3 mb-5">
+              <li
+                class="bg-[#00A96E] text-[12px] text-white px-2 rounded-xl items-center"
+              >
+                opened
+              </li>
+              <li class="text-[12px] text-[#64748B]">Opened by Fahim Ahmed</li>
+              <li class="text-[12px] text-[#64748B]">22/02/2026</li>
+            </ul>
+            <div class="flex items-center gap-4 mb-6">
+              <h2
+                class="flex items-center text-[12px] font-medium gap-1 text-[#EF4444] bg-[#FEECEC] px-2 rounded-xl"
+              >
+                <span class="w-2"><img src="./images/bug.png" alt="" /></span>
+                Bug
+              </h2>
+              <h2
+                class="flex items-center text-[12px] font-medium gap-1 text-[#D97706] bg-[#fff6d0] px-2 rounded-xl"
+              >
+                <span class="w-3 uppercase"
+                  ><img src="./images/bug-2.png" alt=""
+                /></span>
+                Help wanted
+              </h2>
+            </div>
+            <p class="text-[#64748B] text-xs mb-4">The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.</p>
 
+            <div class="bg-base-300 p-4 grid grid-cols-2">
+                 <div>
+                    <p  class="text-[#64748B] text-xs">Assignee:</p>
+                    <h2 class="font-semibold text-xs">Fahim Ahmed</h2>
+                 </div>
+
+                 <div>
+                    <p  class="text-[#64748B] text-xs">Priority:</p>
+                   <p class="btn btn-xs btn-error  cursor-default btn-active  text-white text-xs ">High</p>
+                 </div>
+            </div>
             <div class="modal-action">
               <form method="dialog">
-                <button class="btn">Close</button>
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn btn-primary">Close</button>
               </form>
             </div>
           </div>

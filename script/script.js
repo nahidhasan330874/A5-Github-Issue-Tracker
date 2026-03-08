@@ -42,7 +42,7 @@ function displayCards(cards) {
 
 
     allCard.innerHTML = `
-      <div class="bg-base-100 shadow-sm rounded-md h-full w-full object-cover ${borderColor}">
+      <div onclick="my_modal_5.showModal()" class="bg-base-100 shadow-sm rounded-md h-full w-full object-cover ${borderColor}">
         <div class="p-4 space-y-3">
           <div class="flex justify-between items-center">
             <img src="${statusImg}" alt="" />
